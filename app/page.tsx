@@ -31,16 +31,21 @@ export default function HomePage() {
   }
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen p-4">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-        <h1 className="text-xl font-bold mb-4">Choose car</h1>
-        <label className="block mb-2">Model:</label>
+    <main className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-50">
+      <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-lg">
+        <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
+          Choose a car
+        </h1>
+
+        <label className="block text-lg font-medium text-gray-700 mb-2">
+          Models
+        </label>
         <select
-          className="w-full border p-2 rounded"
+          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={selectedMake}
           onChange={(e) => setSelectedMake(e.target.value)}
         >
-          <option value="">Choose model</option>
+          <option value="">Choose a model</option>
           {makes.map((make) => (
             <option key={make.MakeId} value={make.MakeId}>
               {make.MakeName}
@@ -48,13 +53,15 @@ export default function HomePage() {
           ))}
         </select>
 
-        <label className="block mt-4 mb-2">Year:</label>
+        <label className="block text-lg font-medium text-gray-700 mt-4 mb-2">
+          Year
+        </label>
         <select
-          className="w-full border p-2 rounded"
+          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={selectedYear}
           onChange={(e) => setSelectedYear(e.target.value)}
         >
-          <option value="">Choose year</option>
+          <option value="">Choose a year</option>
           {[...Array(getCurrentYear() - 2015 + 1)].map((_, i) => {
             const year = 2015 + i
             return (
@@ -66,7 +73,7 @@ export default function HomePage() {
         </select>
 
         <button
-          className="w-full mt-4 bg-blue-500 text-white p-2 rounded disabled:bg-gray-400"
+          className="w-full mt-6 py-3 bg-blue-600 text-white font-semibold rounded-lg disabled:bg-gray-400 transition duration-300 hover:bg-blue-500"
           onClick={handleNext}
           disabled={!selectedMake || !selectedYear}
         >

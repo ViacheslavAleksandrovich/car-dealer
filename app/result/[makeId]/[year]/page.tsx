@@ -41,18 +41,23 @@ export default async function ResultPage({ params }: Params) {
   const vehicles = await fetchModels(makeId, year)
 
   return (
-    <main className="flex flex-col items-center min-h-screen p-4">
-      <h1 className="text-xl font-bold mb-4">Models {year}</h1>
-      <Suspense fallback={<p>Loacding...</p>}>
-        <ul className="bg-white p-4 rounded shadow-md w-96">
+    <main className="flex flex-col items-center min-h-screen p-6 bg-gray-50">
+      <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
+        Models {year}
+      </h1>
+
+      <Suspense fallback={<p>Loading...</p>}>
+        <ul className="bg-white p-6 rounded-lg shadow-xl w-full max-w-4xl space-y-4">
           {vehicles.length > 0 ? (
             vehicles.map((vehicle, index) => (
-              <li key={index} className="border-b p-2">
-                {vehicle.Model_Name}
+              <li key={index} className="border-b pb-4">
+                <span className="text-lg text-gray-800">
+                  {vehicle.Model_Name}
+                </span>
               </li>
             ))
           ) : (
-            <p>No data</p>
+            <p>No data for this model and year</p>
           )}
         </ul>
       </Suspense>
